@@ -7,8 +7,8 @@ import { Download, FileSpreadsheet, FileText, Printer, Share2, TrendingDown, Tre
 export function Kpi({
   label, value, delta, hint, icon, tone = "default",
 }: {
-  label: string; value: string; delta?: number; hint?: string; icon?: ReactNode;
-  tone?: "default" | "success" | "warning" | "danger" | "brand";
+  label: string; value: string; delta?: number | undefined; hint?: string | undefined; icon?: ReactNode | undefined;
+  tone?: "default" | "success" | "warning" | "danger" | "brand" | undefined;
 }) {
   const tones: Record<string, string> = {
     default: "text-foreground",
@@ -59,7 +59,7 @@ const STATUS_TONE: Record<string, string> = {
   ausente: "bg-destructive/10 text-destructive border-destructive/25",
 };
 
-export function StatusPill({ status, className }: { status: string; className?: string }) {
+export function StatusPill({ status, className }: { status: string; className?: string | undefined }) {
   const key = status.toLowerCase();
   return (
     <span className={cn("inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-medium capitalize", STATUS_TONE[key] ?? "bg-secondary text-secondary-foreground border-border", className)}>
@@ -71,7 +71,7 @@ export function StatusPill({ status, className }: { status: string; className?: 
 
 export function SectionCard({
   title, description, actions, children, className, padded = true,
-}: { title?: string; description?: string; actions?: ReactNode; children: ReactNode; className?: string; padded?: boolean }) {
+}: { title?: string | undefined; description?: string | undefined; actions?: ReactNode | undefined; children: ReactNode; className?: string | undefined; padded?: boolean | undefined }) {
   return (
     <section className={cn("surface-card overflow-hidden", className)}>
       {(title || actions) && (
@@ -112,7 +112,7 @@ export function PlanTag({ plan }: { plan: string }) {
   return <Badge variant="outline" className="border-primary/30 bg-primary/8 text-[10px] font-semibold uppercase tracking-wider text-primary">{plan}</Badge>;
 }
 
-export function EmptyState({ title, description, action }: { title: string; description: string; action?: ReactNode }) {
+export function EmptyState({ title, description, action }: { title: string; description: string; action?: ReactNode | undefined }) {
   return (
     <div className="grid-blueprint flex flex-col items-center justify-center rounded-xl border border-dashed border-border px-6 py-12 text-center">
       <div className="brand-gradient mb-3 grid size-10 place-items-center rounded-xl text-primary-foreground opacity-90">

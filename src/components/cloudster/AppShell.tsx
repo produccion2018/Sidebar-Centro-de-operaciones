@@ -17,7 +17,7 @@ const GROUPS = ["Clínico", "Operación", "Administración", "Inteligencia", "Or
 
 function Logo({ compact = false }: { compact?: boolean }) {
   return (
-    <Link to="/app" className="flex items-center gap-2.5">
+    <Link to={"/app" as never} className="flex items-center gap-2.5">
       <span className="brand-gradient grid size-8 place-items-center rounded-[10px] font-display text-sm font-bold text-primary-foreground shadow-[0_6px_18px_-6px_oklch(0.5_0.18_295)]">
         C
       </span>
@@ -31,7 +31,7 @@ function Logo({ compact = false }: { compact?: boolean }) {
   );
 }
 
-function NavList({ onNavigate }: { onNavigate?: () => void }) {
+function NavList({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
   const { plan, disabled } = useCloudster();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
@@ -63,7 +63,7 @@ function NavList({ onNavigate }: { onNavigate?: () => void }) {
                 return (
                   <li key={m.id}>
                     <Link
-                      to={m.path}
+                      to={m.path as never}
                       onClick={onNavigate}
                       className={cn(
                         "group flex items-center gap-2.5 rounded-lg px-2 py-2 text-sm transition-colors",
@@ -96,7 +96,7 @@ function PlanFooter() {
         <p className="text-[10px] uppercase tracking-[0.16em] text-sidebar-foreground/45">Plan activo</p>
         <p className="font-display text-sm font-semibold text-sidebar-foreground">{PLANS[plan].name}</p>
         <p className="mt-0.5 text-[11px] text-sidebar-foreground/55">{PLANS[plan].audience}</p>
-        <Link to="/planes" className="mt-2.5 block rounded-lg bg-sidebar-primary px-3 py-1.5 text-center text-xs font-semibold text-sidebar-primary-foreground transition-opacity hover:opacity-90">
+        <Link to={"/planes" as never} className="mt-2.5 block rounded-lg bg-sidebar-primary px-3 py-1.5 text-center text-xs font-semibold text-sidebar-primary-foreground transition-opacity hover:opacity-90">
           Comparar planes
         </Link>
       </div>
@@ -104,7 +104,7 @@ function PlanFooter() {
   );
 }
 
-function SidebarInner({ onNavigate }: { onNavigate?: () => void }) {
+function SidebarInner({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
   return (
     <div className="flex h-full flex-col bg-sidebar text-sidebar-foreground">
       <div className="px-4 py-4"><Logo /></div>

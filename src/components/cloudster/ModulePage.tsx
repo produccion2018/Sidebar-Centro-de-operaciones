@@ -9,10 +9,10 @@ export function ModulePage({
   moduleId, title, subtitle, actions, tabs, children,
 }: {
   moduleId: ModuleId;
-  title?: string;
-  subtitle?: string;
-  actions?: ReactNode;
-  tabs?: ReactNode;
+  title?: string | undefined;
+  subtitle?: string | undefined;
+  actions?: ReactNode | undefined;
+  tabs?: ReactNode | undefined;
   children: ReactNode;
 }) {
   const mod = MODULE_BY_ID[moduleId];
